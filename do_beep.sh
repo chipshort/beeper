@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/bin/sh
+
+set -e
+
 #Player
 #
 # This runs the beep script on the client pc
@@ -6,7 +9,12 @@
 # takes a target date as first argument
 # and the script to run as second argument
 
-cd Dokumente/beeper/tracks
+if [ -z "$1" ]; then
+	echo "Usage : do_beep FILE TO BEEP"
+	exit
+fi
+
+cd ~/programming/haskell/midiToBeep/midi/odeToJoy
 #echo "$1"
 #echo $(($1 - $(date +%s%N)))
 
