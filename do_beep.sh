@@ -10,11 +10,10 @@ set -e
 # and the script to run as second argument
 
 if [ -z "$1" ]; then
-	echo "Usage : do_beep FILE TO BEEP"
+	echo "Usage : do_beep TARGET_TIMESTAMP FILE_TO_BEEP"
 	exit
 fi
 
-cd ~/programming/haskell/midiToBeep/midi/odeToJoy
 #echo "$1"
 #echo $(($1 - $(date +%s%N)))
 
@@ -24,5 +23,5 @@ echo $(($1 - $(date +%s%N)))
 done
 
 #beep -l 1000
-. $2
+. "$2"
 exit
