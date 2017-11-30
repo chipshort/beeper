@@ -7,6 +7,6 @@ Runs a set of beep scripts on the CIP Pool of University Trier
 
 # Usage
 1. Create a subfolder named "tracks"
-2. Run ./play.sh
+2. Run ``./play.sh TRACK_FOLDER``
 3. Enter your username and password
 4. Wait until the counter is done and enjoy
