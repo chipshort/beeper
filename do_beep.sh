@@ -18,7 +18,7 @@ fi
 #echo $(($1 - $(date +%s%N)))
 
 while [ $(($1 - $(date +%s%N))) -gt 0 ]; do
-echo $(($1 - $(date +%s%N)))
+	echo $(($1 - $(date +%s%N)))
 :
 done
 

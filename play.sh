@@ -3,12 +3,12 @@
 set -e
 set -o pipefail
 
-curpath="$(readlink -f "$0" | dirname)"
-
 if [ -z "$1" ]; then
 	echo "Usage: play.sh DIRECTORY WITH TRACK SCRIPTS"
 	exit
 fi
+
+curpath="$(dirname $(readlink -f '$0'))"
 
 read -p "User: " user
 read -sp "Password: " password
