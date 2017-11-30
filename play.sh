@@ -4,7 +4,7 @@ set -e
 set -o pipefail
 
 if [ -z "$1" ]; then
-	echo "Usage: play.sh DIRECTORY WITH TRACK SCRIPTS"
+	echo "Usage: play.sh DIRECTORY_WITH_TRACK_SCRIPTS"
 	exit
 fi
 
@@ -33,7 +33,7 @@ target=$(($(date +%s%N) + 5000000000))
 
 for f in *
 do
-	../sshpass/sshpass ssh -o StrictHostKeyChecking=no -l "$user" infcip${available[counter]} "$curpath/do_beep.sh $target" <<<"$password" "$(readlink -f "$f")" &
+	"$curpath/sshpass/sshpass" ssh -o StrictHostKeyChecking=no -l "$user" infcip${available[counter]} "$curpath/do_beep.sh $target" <<<"$password" "$(readlink -f "$f")" &
 	counter=$((counter+1))
 done
 wait
