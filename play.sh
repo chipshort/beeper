@@ -1,5 +1,15 @@
 #!/bin/bash
 
+set -e
+set -o pipefail
+
+curpath="$(readlink -f "$0" | dirname)"
+
+if [ -z "$1" ]; then
+	echo "Usage: play.sh DIRECTORY WITH TRACK SCRIPTS"
+	exit
+fi
+
 read -p "User: " user
 read -sp "Password: " password
 
@@ -15,14 +25,15 @@ available=(41 42 43 44 46 47 48 49 50 51 52 53 54 55 56 57 58 59 61 62 64 65 66)
 
 #~ echo ${available[*]}
 
-cd tracks
+cd "$1"
 
 counter=0
 target=$(($(date +%s%N) + 5000000000))
 
+
 for f in *
 do
-	../sshpass/sshpass ssh -o StrictHostKeyChecking=no -l $user infcip${available[counter]} "./Dokumente/beeper/do_beep.sh $target" <<<"$password" $f &
+	../sshpass/sshpass ssh -o StrictHostKeyChecking=no -l "$user" infcip${available[counter]} "$curpath/do_beep.sh $target" <<<"$password" "$(readlink -f "$f")" &
 	counter=$((counter+1))
 done
 wait
